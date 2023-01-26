@@ -1,0 +1,75 @@
+// "react-parallax": "^3.5.1",
+// "react-scroll-parallax": "^3.3.2",
+
+// import { useEffect, useRef } from "react"
+// import { AnimationFrame, TurkeyMap } from "../../utils/turkeyMap"
+
+// const Turkey = ({ frames, done }: { frames: AnimationFrame[]; done: () => void }) => {
+//     const canvasRef = useRef<HTMLCanvasElement>(null)
+//     const imgCache: HTMLImageElement[] = []
+
+//     useEffect(() => {
+//         const map = new TurkeyMap()
+
+//         const canvas = canvasRef.current
+//         if (!canvas) return
+
+//         const context = canvas.getContext("2d")!
+//         const images: string[] = []
+//         const html = document.documentElement
+//         const frameCount = frames.length
+
+//         const img = new Image()
+//         img.src = map.snapshot("BASE64")
+
+//         img.onload = function () {
+//             context.drawImage(img, 0, 0)
+//         }
+
+//         window.addEventListener("scroll", () => {
+//             const scrollTop = html.scrollTop
+//             const maxScrollTop = html.scrollHeight - window.innerHeight
+//             const scrollFraction = scrollTop / maxScrollTop
+//             const frameIndex = Math.min(frameCount - 1, Math.ceil(scrollFraction * frameCount))
+
+//             if (frameIndex === frameCount - 1) {
+//                 canvas.style.opacity = "0"
+//                 canvas.style.transition = "opacity 1s"
+
+//                 setTimeout(() => {
+//                     window.scrollTo(0, 0)
+//                     document.body.style.height = "100vh"
+//                     done()
+//                 }, 1000)
+
+//                 return
+//             }
+
+//             requestAnimationFrame(() => {
+//                 if (imgCache[frameIndex]) {
+//                     context.drawImage(imgCache[frameIndex], 0, 0)
+//                 } else {
+//                     const img = new Image()
+//                     img.src = images[frameIndex]
+//                     img.onload = function () {
+//                         context.drawImage(img, 0, 0)
+//                         imgCache[frameIndex] = img
+//                     }
+//                 }
+//             })
+//         })
+
+//         for (const frame of frames) {
+//             map.consume(frame)
+//             images.push(map.snapshot("BASE64"))
+//         }
+
+//         return () => {
+//             window.removeEventListener("scroll", () => {})
+//         }
+//     }, [])
+
+//     return <canvas ref={canvasRef} width={1000} height={424} />
+// }
+
+// export default Turkey
